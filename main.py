@@ -42,7 +42,7 @@ def get_single_song(bot, update):
     os.chdir(f'./.temp{message_id}{chat_id}')
 
     logging.log(logging.INFO, f'start downloading')
-    bot.send_message(chat_id=chat_id, text="""Начинаю загрузку... ⏳️ *[Developer](https://t.me/Trentyn)*""")
+    bot.send_message(chat_id=chat_id, text="Начинаю загрузку... ⏳️  @AnonUpdates")
 
     if config["SPOTDL_DOWNLOADER"]:
         os.system(f'spotdl {url}')
