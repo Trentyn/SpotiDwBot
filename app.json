@@ -1,18 +1,7 @@
 {
-    "name": "SpotifyTelegramDownload",
-    "description": "Grabs song from spotify and sends it to telegram",
-    "env": {
-        "TELEGRAM_TOKEN": {
-            "description": "Get this value by making a bot from @BotFather.",
-            "required": true
-        }
-    },
-    "buildpacks": [
-        {
-            "url": "heroku/python"
-        },
-        {
-            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
-        }
-  ]
+  "name": "123",
+  "description": "🤖 Discord Music Bot built with discord.js",
+  "repository": "xd",
+  "logo": "https://i.imgur.com/JFxgbWH.png",
+  "keywords": ["discord", "discordjs", "music", "bot"]
 }
