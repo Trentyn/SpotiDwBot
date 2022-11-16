@@ -42,7 +42,7 @@ def get_single_song(bot, update):
     os.chdir(f'./.temp{message_id}{chat_id}')
 
     logging.log(logging.INFO, f'start downloading')
-    bot.send_message(chat_id=chat_id, text="Starting the download... ⏳️")
+    bot.send_message(chat_id=chat_id, text="Починаю завантаження... ⏳️")
 
     if config["SPOTDL_DOWNLOADER"]:
         os.system(f'spotdl {url}')
@@ -54,7 +54,7 @@ def get_single_song(bot, update):
     logging.log(logging.INFO, 'sending to client')
     try:
         sent = 0 
-        bot.send_message(chat_id=chat_id, text="Sending to you... ⏳️")
+        bot.send_message(chat_id=chat_id, text="Надсилаю тобі... ⏳️")
         files = [os.path.join(dp, f) for dp, dn, filenames in os.walk(".") for f in filenames if os.path.splitext(f)[1] == '.mp3']
         for file in files:
             bot.send_audio(chat_id=chat_id, audio=open(f'./{file}', 'rb'), timeout=1000)
@@ -66,7 +66,7 @@ def get_single_song(bot, update):
     os.system(f'rm -rf .temp{message_id}{chat_id}')
 
     if sent == 0:
-       bot.send_message(chat_id=chat_id, text="Произшла ошибка при поиске/загрузки песни, повторите попытку или забейте")
+       bot.send_message(chat_id=chat_id, text="Сталася помилка під час пошуку/завантаження пісні, повторіть спробу або забудьте")
        raise Exception("dl Failed")
     else:
         logging.log(logging.INFO, 'sent')
@@ -80,12 +80,11 @@ def authenticate(bot, update):
         logging.log(logging.INFO, f'new sign in for user {username}, {chat_id}')
         config["AUTH"]["USERS"].append(chat_id)
         update_config()
-        bot.send_message(chat_id=chat_id, text="You signed in successfully. Enjoy🍻")
+        bot.send_message(chat_id=chat_id, text="Ви успішно увійшли в систему. Насолоджуйтесь 🍻")
         raise Exception("Signed In")
     elif chat_id not in config["AUTH"]["USERS"]:
         logging.log(logging.INFO, f'not authenticated try')
-        bot.send_message(chat_id=chat_id, text="⚠️This bot is personal and you are not signed in. Please enter the "
-                                               "password to sign in. If you don't know it contact the bot owner. ")
+        bot.send_message(chat_id=chat_id, text="⚠️ Цей бот є приватним, і ви не ввійшли в систему. Будь ласка, введіть пароль для входу. Якщо ви його не знаєте, зверніться до власника бота.")
         raise Exception("Not Signed In")
 
 
